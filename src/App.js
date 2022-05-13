@@ -16,7 +16,6 @@ function App() {
 
   const showData = (data) => {
     setProducts(data)
-    console.log(data)
   }
 
   const DeleteProduct = (id) => {
@@ -37,6 +36,12 @@ function App() {
     }
   }
 
+  const DeleteCartItem = (id) => {
+    console.log(cartArr)
+    setCartArr(cartArr.filter(item => item.proId !== id))
+    setCount(count-1)
+  }
+
   return (
     <div className="App">
       <Routes>
@@ -44,7 +49,7 @@ function App() {
 
         <Route path="/inventory" element={<Inventory showData={showData} />}></Route>
 
-        <Route path="/cart" element={<Cart cartArr={cartArr} />}></Route>
+        <Route path="/cart" element={<Cart cartArr={cartArr} DeleteCartItem={DeleteCartItem}/>}></Route>
 
         <Route path="/pro/:id" element={<EditProduct products={products} />} />
       </Routes>

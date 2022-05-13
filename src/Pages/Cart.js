@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Col, Container, Row, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-export const Cart = ({ cartArr }) => {
+export const Cart = ({ cartArr, DeleteCartItem}) => {
     return (
         <div>
             <Container>
@@ -14,6 +14,8 @@ export const Cart = ({ cartArr }) => {
                                 <th>Name</th>
                                 <th>Features</th>
                                 <th>Price</th>
+                                <th></th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -25,6 +27,7 @@ export const Cart = ({ cartArr }) => {
                                         <td>{item.proName}</td>
                                         <td>{item.proFeatures}</td>
                                         <td>{item.proPrice}</td>
+                                        <td><Button onClick={() => DeleteCartItem(item.proId)}>Delete</Button></td>
                                     </tr>
                                 )
                             })}
