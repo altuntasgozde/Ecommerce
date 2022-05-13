@@ -1,39 +1,22 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Button from 'react-bootstrap/Button';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { NavbarItem } from '../Components/NavbarItem';
 
 
-export const Homepage = ({ products, DeleteProduct }) => {
-
-    const Edit = () => {
-        setShowEdit(true)
-    }
-
-    const [showEdit, setShowEdit] = useState(false)
-
+export const Homepage = ({ products, DeleteProduct, AddCart,count }) => {
 
     return (
         <div>
-            <Container>
-                <Row>
-                    <Col>
-                        <Link to="/inventory">
-                            <Button variant="primary" size="lg" className='mt-2'>
-                                Inventory
-                            </Button>
-                        </Link>
-                    </Col>
-                </Row>
-
-            </Container>
+        <NavbarItem count={count}/>
             <Container>
                 <Row>
                     <Col>
                         <div>
                             {products.map(item => {
                                 return (
-                                    <div key={item.proName} >
+                                    <div key={item.proId} >
                                         <Card className='mt-5' style={{ width: '18rem' }}>
                                             <Card.Body>
                                                 <Card.Title>{item.proName}</Card.Title>
@@ -43,7 +26,7 @@ export const Homepage = ({ products, DeleteProduct }) => {
                                                 </Card.Text>
                                             </Card.Body>
                                             <div>
-                                                <Button variant="primary" size="md">Add To cart</Button>
+                                                <Button onClick={() => AddCart(item.proId)} variant="primary" size="md">Add To cart</Button>
                                                 <Button onClick={() => DeleteProduct(item.proId)} className='m-3' variant="danger" size="md">delete</Button>
                                                 <Link to={"/pro/" + item.proId}>Edit</Link>
                                             </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export const Inventory = (props) => {
@@ -21,7 +21,8 @@ export const Inventory = (props) => {
         proName: name,
         proFeatures: features,
         proPrice: price,
-        proId: proId
+        proId: proId,
+        count:1
       }])
 
     e.preventDefault();
