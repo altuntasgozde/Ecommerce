@@ -8,9 +8,9 @@ import { Cart } from './Pages/Cart';
 
 function App() {
 
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState(JSON.parse(localStorage.getItem("products")) || [])
 
-  const [cartArr, setCartArr] = useState([])
+  const [cartArr, setCartArr] = useState(JSON.parse(localStorage.getItem("cart")) || [])
 
   const [count, setCount] = useState(0)
 
@@ -41,6 +41,11 @@ function App() {
     setCartArr(cartArr.filter(item => item.proId !== id))
     setCount(count-1)
   }
+
+  useEffect(() => {
+    localStorage.setItem("products", JSON.stringify(products));
+    localStorage.setItem("cart", JSON.stringify(cartArr));
+  }, [products,cartArr]);
 
   return (
     <div className="App">
