@@ -1,10 +1,12 @@
 import React from 'react'
 import { Button, Col, Container, Row, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { NavbarItem } from '../Components/NavbarItem'
 
-export const Cart = ({ cartArr, DeleteCartItem}) => {
+export const Cart = ({ cartArr, DeleteCartItem, count }) => {
     return (
         <div>
+            <NavbarItem count={count} />
             <Container>
                 <Row>
                     <Table striped bordered hover>
@@ -34,14 +36,6 @@ export const Cart = ({ cartArr, DeleteCartItem}) => {
                         </tbody>
                     </Table>
                 </Row>
-                
-            <Row>
-                <Col>
-                    <Link to="/">
-                        <Button className="mt-2">Back to Homepage</Button>
-                    </Link>
-                </Col>
-            </Row>
             </Container>
 
         </div>

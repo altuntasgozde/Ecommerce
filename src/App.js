@@ -52,9 +52,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage products={products} DeleteProduct={DeleteProduct} AddCart={AddCart} count={count} />}></Route>
 
-        <Route path="/inventory" element={<Inventory showData={showData} />}></Route>
+        <Route path="/inventory" element={<Inventory showData={showData} count={count}/>}></Route>
 
-        <Route path="/cart" element={<Cart cartArr={cartArr} DeleteCartItem={DeleteCartItem}/>}></Route>
+        <Route path="/cart" element={<Cart cartArr={cartArr} DeleteCartItem={DeleteCartItem} count={count}/>}></Route>
 
         <Route path="/pro/:id" element={<EditProduct products={products} />} />
       </Routes>
