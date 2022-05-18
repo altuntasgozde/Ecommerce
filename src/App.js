@@ -10,17 +10,14 @@ function App() {
 
   const [products, setProducts] = useState(JSON.parse(localStorage.getItem("products")) || [])
 
-  const [cartArr, setCartArr] = useState(JSON.parse(localStorage.getItem("cart")) || [])
-
-  const [count, setCount] = useState(0)
-
   const showData = (data) => {
     setProducts(data)
   }
 
-  const DeleteProduct = (id) => {
-    setProducts(products.filter((item) => item.proId !== id))
-  }
+  // Cart
+  const [cartArr, setCartArr] = useState(JSON.parse(localStorage.getItem("cart")) || [])
+
+  const [count, setCount] = useState(0)
 
   const AddCart = (id) => {
     if (cartArr.some(item => item.proId == id)) {
@@ -39,22 +36,39 @@ function App() {
   const DeleteCartItem = (id) => {
     console.log(cartArr)
     setCartArr(cartArr.filter(item => item.proId !== id))
-    setCount(count-1)
+    setCount(count - 1)
   }
+
+  // Filter
+  const [filterSize, setFilterSize] = useState(null)
+
+  const ChangeSize = (e) => {
+    setFilterSize(e.target.value)
+  }
+
+  const UpdateProduct = () => {
+    setProducts(products.filter((product) => product.proSize == filterSize))
+  }
+
+  // Delete
+  const DeleteProduct = (id) => {
+    setProducts(products.filter((item) => item.proId !== id))
+  }
+
 
   useEffect(() => {
     localStorage.setItem("products", JSON.stringify(products));
     localStorage.setItem("cart", JSON.stringify(cartArr));
-  }, [products,cartArr]);
+  }, [products, cartArr]);
 
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Homepage products={products} DeleteProduct={DeleteProduct} AddCart={AddCart} count={count} />}></Route>
+        <Route path="/" element={<Homepage products={products} DeleteProduct={DeleteProduct} AddCart={AddCart} count={count} UpdateProduct={UpdateProduct} ChangeSize={ChangeSize} />}></Route>
 
-        <Route path="/inventory" element={<Inventory showData={showData} count={count}/>}></Route>
+        <Route path="/inventory" element={<Inventory showData={showData} count={count} />}></Route>
 
-        <Route path="/cart" element={<Cart cartArr={cartArr} DeleteCartItem={DeleteCartItem} count={count}/>}></Route>
+        <Route path="/cart" element={<Cart cartArr={cartArr} DeleteCartItem={DeleteCartItem} count={count} />}></Route>
 
         <Route path="/pro/:id" element={<EditProduct products={products} />} />
       </Routes>

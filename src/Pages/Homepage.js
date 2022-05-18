@@ -5,7 +5,7 @@ import { Filter } from '../Components/Filter';
 import { Cards } from '../Components/Cards';
 
 
-export const Homepage = ({ products, DeleteProduct, AddCart, count }) => {
+export const Homepage = ({ products, DeleteProduct, AddCart, count,ChangeSize,UpdateProduct }) => {
 
     return (
         <div>
@@ -13,7 +13,7 @@ export const Homepage = ({ products, DeleteProduct, AddCart, count }) => {
             <Container>
                 <Row>
                     <Col md={4}>
-                        <Filter />
+                        <Filter ChangeSize={ChangeSize} UpdateProduct={UpdateProduct}/>
                     </Col>
                     <Col>
                         <div>

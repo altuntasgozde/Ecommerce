@@ -12,6 +12,9 @@ export const Cards = ({item,DeleteProduct, AddCart}) => {
                     <Card.Text>
                         {item.proFeatures}
                     </Card.Text>
+                    <Card.Text>
+                        {item.proSize}
+                    </Card.Text>
                 </Card.Body>
                 <div className='d-flex justify-content-around'>
                     <Button onClick={() => AddCart(item.proId)} variant="primary" size="md">Add To cart</Button>
