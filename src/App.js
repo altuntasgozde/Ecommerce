@@ -40,14 +40,28 @@ function App() {
   }
 
   // Filter
+  //size
   const [filterSize, setFilterSize] = useState(null)
 
   const ChangeSize = (e) => {
     setFilterSize(e.target.value)
   }
 
+  //search
+  const [search, setSearch] = useState("")
+
+  const GetSearchValue = (e) => {
+    setSearch(e.target.value)
+  }
+
   const UpdateProduct = () => {
-    setProducts(products.filter((product) => product.proSize == filterSize))
+
+    if(search === "" && filterSize === null){
+      return products;
+    } else {
+      setProducts(products.filter((product) => product.proName.toLowerCase().includes(search.toLowerCase())))
+      setProducts(products.filter((product) => product.proSize == filterSize))
+    }
   }
 
   // Delete
@@ -64,7 +78,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Homepage products={products} DeleteProduct={DeleteProduct} AddCart={AddCart} count={count} UpdateProduct={UpdateProduct} ChangeSize={ChangeSize} />}></Route>
+        <Route path="/" element={<Homepage products={products} DeleteProduct={DeleteProduct} AddCart={AddCart} GetSearchValue={GetSearchValue} count={count} UpdateProduct={UpdateProduct} ChangeSize={ChangeSize} />}></Route>
 
         <Route path="/inventory" element={<Inventory showData={showData} count={count} />}></Route>
 

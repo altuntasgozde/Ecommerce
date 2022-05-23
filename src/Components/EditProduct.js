@@ -7,8 +7,6 @@ export const EditProduct = ({products}) => {
   let { id } = useParams();
 
 
-
-
   return (
     <div>
 
